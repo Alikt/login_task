@@ -8,7 +8,6 @@ import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -52,7 +51,7 @@ public class BaseTest {
     private DesiredCapabilities getDesiredCapabilities() {
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
-        if (!isIOS) {
+        if (isAndroid) {
             capabilities.setCapability("platformName", "Android");
             capabilities.setCapability("deviceName", "emulator-5554");
             capabilities.setCapability("app", "app.apk");
