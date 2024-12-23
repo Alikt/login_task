@@ -2,19 +2,23 @@ package com.app.login.screens;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import org.openqa.selenium.support.FindBy;
+import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class LoginScreen extends BaseScreen {
 
-    @FindBy(id = "username")
+    @AndroidFindBy(id = "username")
+    @iOSXCUITFindBy(id = "name")
     private MobileElement usernameField;
 
-    @FindBy(id = "password")
+    @AndroidFindBy(id = "password")
+    @iOSXCUITFindBy(id = "pass")
     private MobileElement passwordField;
 
-    @FindBy(id = "loginButton")
+    @AndroidFindBy(id = "loginButton")
+    @iOSXCUITFindBy(id = "login")
     private MobileElement loginButton;
 
     public LoginScreen(AppiumDriver<MobileElement> driver) {
@@ -22,8 +26,8 @@ public class LoginScreen extends BaseScreen {
         PageFactory.initElements(new AppiumFieldDecorator(driver), this);
     }
 
-    public DashboardScreen login(String username, String password) {
-        isAppInstalled();
+    public DashboardScreen login(String username, String password, String appName) {
+        isAppInstalled(appName);
         usernameField.sendKeys(username);
         passwordField.sendKeys(password);
         loginButton.click();

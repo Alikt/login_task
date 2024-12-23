@@ -2,7 +2,7 @@ package com.app.login.tests;
 import com.app.login.screens.DashboardScreen;
 import com.app.login.screens.LoginScreen;
 import com.app.login.setup.BaseTest;
-import io.appium.java_client.AppiumDriver;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.net.MalformedURLException;
@@ -22,15 +22,14 @@ public class SmokeTests extends BaseTest {
         LoginScreen loginPage = new LoginScreen(driver);
         DashboardScreen dashboardPage = new DashboardScreen(driver);
 
-        loginPage.login("validUsername", "validPassword");
-        assertTrue(driver.findElementById("dashboard").isDisplayed());
-
-        dashboardPage.search("Me", "Mee");
+        loginPage.login("validUsername", "validPassword", "com.app")
+            .isDashBoardAppears()
+            .search("Me", "Mee");
         assertTrue(driver.findElementById("searchResult").isDisplayed());
     }
 
-/*    @AfterEach
+    @AfterEach
     void closeBrowser() {
         close_driver();
-    }*/
+    }
 }
